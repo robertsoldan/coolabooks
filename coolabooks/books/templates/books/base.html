@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+
+    <title>Coola Books</title>
+    <!-- pulling up CSS and bootstrap styles -->
+    <link rel="stylesheet" href="{% static 'books/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">CoolaBooks</a>
+        <div class="navbar">
+            {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </div>
+
+    </nav>
+    <!-- this code shows any updates rendered using messages (account successfully created) -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class ="text-center alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>    
+        {% endfor %}
+    {% endif %}
+
+    <!-- this is where HTML of other files starts -->
+    {% block body %}
+    {% endblock %}
+    <!-- this is where HTML of other files ends -->
+</body>
+</html>

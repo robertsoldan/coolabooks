@@ -1,0 +1,40 @@
+{% extends 'books/base.html' %}
+
+{% block body %}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 my-5">
+            <div class="card">
+                <div class="card-header text-secondary bg-light">
+                    <div class = "card-title">
+                        Login
+                    </div>
+                </div>
+                <div class="card-body text-center">
+                    <p class="text-danger text-center">
+                        {% if form.non_field_errors %}
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        {% endif %}
+                    </p>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-group">
+                                {{ field.name }}
+                                <br>
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                        <button type = "submit" class="btn-info">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
