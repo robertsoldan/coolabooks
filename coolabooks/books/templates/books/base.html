@@ -16,7 +16,8 @@
         <div class="navbar">
             <!-- displays logout if the user is logged in-->
             {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                <p>{{ user }}</p>
+                <a class="nav-item nav-link" href="{% url 'logout' %}"> Logout </a>
             <!-- displays login and register if the user is logged out-->
             {% else %}
                 <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>

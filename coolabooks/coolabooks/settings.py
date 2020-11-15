@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'coolabooks.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dcatfspcp3bbjm',
+        'USER': 'pzwnhvyyzdmmog',
+        'PASSWORD': '473b4f3122dd2098632b48b3cbba3dfd3bad5d6417090e5e3122959335020fdd',
+        'HOST': 'ec2-54-247-169-129.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
