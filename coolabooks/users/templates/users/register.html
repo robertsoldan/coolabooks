@@ -1,3 +1,4 @@
+<!-- this imports content from the base file (navigation, footer) -->
 {% extends 'books/base.html' %}
 
 {% block body %}
@@ -11,6 +12,7 @@
                     </div>
                 </div>
                 <div class="card-body text-center">
+                    <!-- this shows the message containing the registration issue -->
                     <div class="text-danger">
                         {% for field in form %}
                             {{ field.errors }}
@@ -18,15 +20,27 @@
                     </div>
                     <form method="POST">
                         {% csrf_token %}
-                        {% for field in form %}
+                        <p>username:</p>
+                        <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username">
+                        <p>email:</p>
+                        <input type="email" name="email" required="" id="id_email">
+                        <p>password:</p>
+                        <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+                        <p>confirm password:</p>
+                        <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+                       
+                        <!-- below is the code that loops through the fields nicer, but it shows password 1 and password 2 as fields-->
+                        <!-- {% for field in form %}
                             <div class="form-group">
                                 {{ field.name }}
                                 <br>
-                                {{ field }}
+                                {{ field.password1 }}
                             </div>
-                        {% endfor %}
-                        <button type = "submit" class="btn-info">Sign up</button>
+                        {% endfor %} -->
+                        <br>
+                        <button type = "submit" class="btn-info my-3">Sign up</button>
                     </form>
+                    
                 </div>
             </div>
         </div>

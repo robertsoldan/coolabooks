@@ -1,3 +1,4 @@
+<!-- this imports content from the base file (navigation, footer) -->
 {% extends 'books/base.html' %}
 
 {% block body %}
@@ -12,6 +13,7 @@
                     </div>
                 </div>
                 <div class="card-body text-center">
+                    <!-- this shows the message containing the registration issue -->
                     <p class="text-danger">
                         {% if form.non_field_errors %}
                             {% for error in form.non_field_errors %}
@@ -19,6 +21,7 @@
                             {% endfor %}
                         {% endif %}
                     </p>
+                    <!-- loops through the form fields and displays them -->
                     <form method="POST">
                         {% csrf_token %}
                         {% for field in form %}
