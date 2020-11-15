@@ -6,13 +6,13 @@
     <div class="row">
         <div class="col-md-4 offset-md-4 my-5">
             <div class="card">
-                <div class="card-header text-secondary bg-light">
+                <div class="card-header text-secondary bg-light text-center">
                     <div class = "card-title">
                         Login
                     </div>
                 </div>
                 <div class="card-body text-center">
-                    <p class="text-danger text-center">
+                    <p class="text-danger">
                         {% if form.non_field_errors %}
                             {% for error in form.non_field_errors %}
                                 {{ error }}
