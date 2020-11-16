@@ -1,25 +1,52 @@
 <!-- this imports content from the base file (navigation, footer) -->
 {% extends 'books/base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoolaBooks</title>
-    
+    <link rel="stylesheet" type="text/css" href="{% static 'books/style.css' %}">
 </head>
+
 <body>
 
-    
 
-    {% block body %}
-    <!-- Code specific for this page goes here -->
-    
-        <div class="jumbotron text-center">
-            <h2>This is the homepage.</h2>
+{% block body %}
+<div class="home min-vh-100">
+    <div class="header-img row">
+        <div class="column my-auto mx-auto main-header">
+            <h1 class="text-center text-light mx-auto">Rediscover the joy of reading</h1>
+            <h3 class="text-center text-light mx-auto">Pick up or drop at a location of your choosing</h3>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="row bg-dark">
+
+        {% endif %}
+    </div>
+    <div class="row  mt-4 content">
+        <div class="col-md-4 mb-4">
+            {% include 'partials/_card.html' with title="Moby Dick" edition="1995" author="Herman Melville" condition="Well read" location="Bleeding Horse pub" imglink="books/images/worn-book.jpg" %}
+        </div>
+        <div class="col-md-4 mb-4">
+            {% include 'partials/_card.html' with title="Metro 2033" edition="2014" author="Dmitry Glukhovsky" condition="Good" location="Clontarf" imglink="books/images/old-books.jpg" %}
+        </div>
+        <div class="col-md-4 mb-4">
+            {% include 'partials/_card.html' with title="Python for Unix Admins" edition="2018" author="O'Reilly" condition="Good" location="Rathmines Swan Shopping Centre" imglink="books/images/python.jpg" %}
+        </div>
+        <div class="col-md-4 mb-4">
+            {% include 'partials/_card.html' with title="Shogun" edition="1988" author="James Clavell" condition="Old" location="Exchequer Street" imglink="books/images/very-old.jpg" %}
+        </div>
+        <div class="col-md-4 mb-4">
+            {% include 'partials/_card.html' with title="Hatters Castle" edition="2006" author="Alex Haley" condition="Good" location="O'Connel St." imglink="books/images/handheld.jpg" %}
         </div>
 
-    {% endblock %}
+    </div>
+</div>
+{% endblock %}
 
 </body>
-</html>
+</html>http://127.0.0.1:8000/static/books/worn-book.jpg

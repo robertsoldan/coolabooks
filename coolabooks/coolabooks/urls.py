@@ -19,6 +19,7 @@ from users import views as user_views
 from django.contrib.auth import views as authentication_views
 from django.urls import include, path
 
+
 urlpatterns = [
     path('', include('books.urls')),
     path('admin/', admin.site.urls),

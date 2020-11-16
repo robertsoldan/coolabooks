@@ -6,38 +6,38 @@
 
     <title>Coola Books</title>
     <!-- pulling up CSS and bootstrap styles -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'books/style.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 </head>
+<style>
+
+</style>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">CoolaBooks</a>
-        <div class="navbar">
-            <!-- displays logout if the user is logged in-->
-            {% if user.is_authenticated %}
-                <p>{{ user }}</p>
-                <a class="nav-item nav-link" href="{% url 'logout' %}"> Logout </a>
-            <!-- displays login and register if the user is logged out-->
-            {% else %}
-                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
-            {% endif %}
-        </div>
 
-    </nav>
-    <!-- this code shows any updates rendered using messages (account successfully created) -->
-    {% if messages %}
-        {% for message in messages %}
-            <div class ="text-center alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>    
-        {% endfor %}
-    {% endif %}
+<!-- Navbar -->
+{% include 'partials/_navbar.html' %}
 
-    <!-- this is where HTML of other files starts -->
-    {% block body %}
-    {% endblock %}
-    <!-- this is where HTML of other files ends -->
+<!-- this code shows any updates rendered using messages (account successfully created) -->
+{% if messages %}
+{% for message in messages %}
+<div class="text-center alert alert-{{ message.tags }}">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+<!-- this is where HTML of other files starts -->
+{% block body %}
+
+{% endblock %}
+
+<!-- this is where HTML of other files ends -->
+<footer class="py-4 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Copyright &copy; CoolaBooks</small>
+    </div>
+  </footer>
+
 </body>
 </html>
