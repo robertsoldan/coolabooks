@@ -21,10 +21,10 @@ from django.urls import include, path
 
 
 urlpatterns = [
-    path('', include('books.urls')),
-    path('admin/', admin.site.urls),
     # plugs the urls from the books directory to the main url patterns
-    path('books/', include('books.urls')),
+    path('', include('books.urls')),
+    # plugs in admin url
+    path('admin/', admin.site.urls),
     # setting up URL pattern for register function
     path('register/', user_views.register, name='register'),
     # setting up URL patterns for login and logout

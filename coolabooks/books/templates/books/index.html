@@ -25,10 +25,11 @@
 
     </div>
     <div class="row  mt-4 content">
-        <div class="col-md-4 mb-4">
-            {% include 'partials/_card.html' with title="Moby Dick" edition="1995" author="Herman Melville" condition="Well read" location="Bleeding Horse pub" imglink="books/images/worn-book.jpg" %}
-        </div>
-        <div class="col-md-4 mb-4">
+        {% for book in ind_books %}
+            <div class="col-md-4 mb-4">
+                {% include 'partials/_card.html' with title=book.title edition=book.edition author=book.author condition="Well read" location=book.location image=book.image %}
+            </div>
+      <!--  <div class="col-md-4 mb-4">
             {% include 'partials/_card.html' with title="Metro 2033" edition="2014" author="Dmitry Glukhovsky" condition="Good" location="Clontarf" imglink="books/images/old-books.jpg" %}
         </div>
         <div class="col-md-4 mb-4">
@@ -39,8 +40,8 @@
         </div>
         <div class="col-md-4 mb-4">
             {% include 'partials/_card.html' with title="Hatters Castle" edition="2006" author="Alex Haley" condition="Good" location="O'Connel St." imglink="books/images/handheld.jpg" %}
-        </div>
-
+        </div>-->
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

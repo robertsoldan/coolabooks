@@ -1,11 +1,11 @@
 
 {% load static %}
 <div class="card mx-auto" style="width: 20vw;">
-  <img class="card-img-top" src="{% static imglink %}" height="250px" alt="Card image cap">
+  <img class="card-img-top" src="{{ image }}" height="250px" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{title}}</h5>
 
-    <p class="card-text">{{edition}}</p>
+    <p class="card-text">Edition: {{edition}}</p>
     <p>Author: {{author}}</p>
     <p>Condition: {{condition}}</p>
     <p class="card-text">{{location}}</p>
