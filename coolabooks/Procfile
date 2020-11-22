@@ -1,1 +1,1 @@
-web: gunicorn pollster/polsllster.wsgi --log-file -
+web: gunicorn coolabooks.wsgi --log-file -
