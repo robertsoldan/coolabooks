@@ -1,0 +1,53 @@
+{% extends 'books/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Books</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'books/style.css' %}">
+</head>
+
+<body>
+
+
+{% block body %}
+{% if not user.is_authenticated %}
+<div class="mt-5 mx-auto my-auto row" style="height: 70vh">
+    <h3 class="mx-auto my-auto">Please <a href="/login">login</a> to view this page</h3>
+</div>
+{% endif %}
+{% if user.is_authenticated %}
+<div style="margin-top: 10vh">
+    <div class="row ml-5 mt-2">
+        <h4>{{ user }}'s dashboard</h4>
+    </div>
+    <div class="row ml-5 mt-2">
+        <button class="btn btn-dark">Add book</button>
+        <button class="btn btn-dark ml-4">View profile</button>
+    </div>
+    <hr/>
+    <ul class="nav nav-tabs ml-5 mt-3 mb-5">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">My books</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" href="/my-books/reserved">Reserved</a>
+        </li>
+    </ul>
+    <div class="row  mt-4 content">
+        {% for book in ind_books %}
+        {% if book.added_by == user %}
+        <div class="col-md-4 mb-4">
+            {% include 'partials/_card.html' with title=book.title edition=book.edition author=book.author genre=book.genre location=book.location image=book.image view="mybook" %}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+</body>
+</html>

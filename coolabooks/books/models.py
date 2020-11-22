@@ -1,5 +1,6 @@
+from django.contrib.auth.models import User
 from django.db import models
-
+from django.contrib.auth import get_user_model
 
 # Books model that includes the fields needed to add a book
 
@@ -42,3 +43,15 @@ class Book(models.Model):
     genre = models.CharField(max_length=100)
     year = models.IntegerField()
     image = models.CharField(max_length=300, default="https://images.pexels.com/photos/4199098/pexels-photo-4199098.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+    added_by = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="added_book",
+        default=1
+    )
+    reserved = models.BooleanField(default=False)
+    reserved_by = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        default=1
+    )

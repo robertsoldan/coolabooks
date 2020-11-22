@@ -27,7 +27,7 @@
     <div class="row  mt-4 content">
         {% for book in ind_books %}
             <div class="col-md-4 mb-4">
-                {% include 'partials/_card.html' with title=book.title edition=book.edition author=book.author genre=book.genre location=book.location image=book.image %}
+                {% include 'partials/_card.html' with title=book.title edition=book.edition author=book.author genre=book.genre location=book.location image=book.image view="home" %}
             </div>
       <!--  <div class="col-md-4 mb-4">
             {% include 'partials/_card.html' with title="Metro 2033" edition="2014" author="Dmitry Glukhovsky" condition="Good" location="Clontarf" imglink="books/images/old-books.jpg" %}
@@ -47,4 +47,4 @@
 {% endblock %}
 
 </body>
-</html>http://127.0.0.1:8000/static/books/worn-book.jpg
+</html>

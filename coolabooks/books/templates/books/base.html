@@ -21,13 +21,12 @@
 
 <!-- this code shows any updates rendered using messages (account successfully created) -->
 {% if messages %}
-  {% for message in messages %}
-    <div class="text-center alert alert-{{ message.tags }} mt-5">
-      {{ message }}
-    </div>
-  {% endfor %}
+{% for message in messages %}
+<div class="text-center alert alert-{{ message.tags }} mt-5">
+    {{ message }}
+</div>
+{% endfor %}
 {% endif %}
-
 
 
 <!-- this is where HTML of other files starts -->
@@ -38,9 +37,18 @@
 <!-- this is where HTML of other files ends -->
 <footer class="py-4 bg-dark fixed-bottom text-white-50">
     <div class="container text-center">
-      <small>Copyright &copy; CoolaBooks</small>
+        <small class="text-light">Copyright &copy; CoolaBooks</small>
+        <div class="row mx-auto text-center justify-content-center">
+            <small>
+                <a class="text-light" href="/disclaimer">Disclaimer</a>
+            </small>
+            <small>&nbsp;|&nbsp;</small>
+            <small>
+                <a class="text-light" href="/privacy">Privacy</a>
+            </small>
+        </div>
     </div>
-  </footer>
+</footer>
 
 </body>
 </html>

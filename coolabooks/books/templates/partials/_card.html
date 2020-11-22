@@ -1,14 +1,31 @@
-
 {% load static %}
 <div class="card mx-auto" style="width: 20vw;">
-  <img class="card-img-top" src="{{ image }}" height="250px" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{title}}</h5>
+    <img class="card-img-top" src="{{ image }}" height="250px" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{title}}</h5>
 
-    <p class="card-text">Edition: {{edition}}</p>
-    <p>Author: {{author}}</p>
-    <p>Genre: {{genre}}</p>
-    <p class="card-text">{{location}}</p>
-    <a href="#" class="btn btn-dark">Have a look</a>
-  </div>
+        <p class="card-text">Edition: {{edition}}</p>
+        <p>Author: {{author}}</p>
+        <p>Genre: {{genre}}</p>
+        <p class="card-text">{{location}}</p>
+
+        {% if view == "home" %}
+        <div class="row">
+            <a href="#" class="btn btn-dark ml-3">Have a look</a>
+        </div>
+        {% endif %}
+
+        {% if view == "mybook" %}
+        <div class="row">
+            <a href="#" class="btn btn-dark ml-3">Edit</a>
+            <a href="#" class="btn btn-danger ml-4">Delete</a>
+        </div>
+        {% endif %}
+
+        {% if view == "reserved" %}
+        <div class="row">
+            <a href="#" class="btn btn-danger ml-3">Remove</a>
+        </div>
+        {% endif %}
+    </div>
 </div>
