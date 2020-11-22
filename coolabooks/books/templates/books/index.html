@@ -26,8 +26,10 @@
     </div>
     <div class="row  mt-4 content">
         {% for book in ind_books %}
-            <div class="col-md-4 mb-4">
+            <div class=" col-md-4 mb-4">
+                <div class="col-xl-8 mx-auto">
                 {% include 'partials/_card.html' with title=book.title edition=book.edition author=book.author genre=book.genre location=book.location image=book.image view="home" %}
+                </div>
             </div>
       <!--  <div class="col-md-4 mb-4">
             {% include 'partials/_card.html' with title="Metro 2033" edition="2014" author="Dmitry Glukhovsky" condition="Good" location="Clontarf" imglink="books/images/old-books.jpg" %}

@@ -40,7 +40,9 @@
         {% for book in ind_books %}
         {% if book.added_by == user %}
         <div class="col-md-4 mb-4">
-            {% include 'partials/_card.html' with title=book.title edition=book.edition author=book.author genre=book.genre location=book.location image=book.image view="mybook" %}
+            <div class="col-xl-8 mx-auto">
+                {% include 'partials/_card.html' with title=book.title edition=book.edition author=book.author genre=book.genre location=book.location image=book.image view="mybook" %}
+            </div>
         </div>
         {% endif %}
         {% endfor %}

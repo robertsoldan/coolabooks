@@ -1,6 +1,12 @@
-body {
+html, body {
     overflow-x: hidden;
 }
+
+.card-img-top {
+    width: 100%;
+    object-fit: cover;
+}
+
 
 .header-img {
     height: 50vh;
@@ -19,4 +25,22 @@ body {
 
 .content {
     margin-bottom: 10vh;
+}
+
+@media only screen and (max-width: 768px) {
+    .header-img {
+        height: 40vh;
+    }
+
+    .main-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .main-header h3 {
+        font-size: 1rem;
+    }
+
+    .content {
+        margin-bottom: 15vh;
+    }
 }
