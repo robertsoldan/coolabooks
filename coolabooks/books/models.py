@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 # Books model that includes the fields needed to add a book
 
@@ -55,3 +56,7 @@ class Book(models.Model):
         on_delete=models.CASCADE,
         default=1
     )
+
+    # adding redirect after the book has been added
+    def get_absolute_url(self):
+        return reverse("books:my-books")

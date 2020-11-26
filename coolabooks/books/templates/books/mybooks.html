@@ -19,12 +19,20 @@
 </div>
 {% endif %}
 {% if user.is_authenticated %}
-<div style="margin-top: 10vh">
-    <div class="row ml-5 mt-2">
+<div style="margin-top: 9vh">
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="text-center alert alert-{{ message.tags }} mt-0">
+            {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %} 
+    <div class="row ml-5 mt-5">
         <h4>{{ user }}'s dashboard</h4>
     </div>
     <div class="row ml-5 mt-2">
-        <button class="btn btn-dark">Add book</button>
+        <a class="btn btn-dark" href="{% url 'books:add_book' %}">Add book</a>
         <button class="btn btn-dark ml-4">View profile</button>
     </div>
     <hr/>

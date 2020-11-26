@@ -1,6 +1,14 @@
 <!-- this imports content from the base file (navigation, footer) -->
 {% extends 'books/base.html' %}
 
+{% if messages %}
+    {% for message in messages %}
+     <div class="text-center alert alert-{{ message.tags }} mt-5">
+        {{ message }}
+    </div>
+    {% endfor %}
+{% endif %}
+
 {% block body %}
 
 <div class="container my-5">
