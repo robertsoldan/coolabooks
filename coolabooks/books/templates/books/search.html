@@ -25,7 +25,31 @@
 
     </div>
     <div class="row  mt-4 content">
-        {% for book in ind_books %}
+        {% for book in result_title %}
+            <div class=" col-md-4 mb-4">
+                <div class="col-xl-8 mx-auto">
+                {% include 'partials/_card.html' with title=book.title edition=book.edition author=book.author genre=book.genre location=book.location image=book.image view="home" %}
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for book in result_author %}
+            <div class=" col-md-4 mb-4">
+                <div class="col-xl-8 mx-auto">
+                {% include 'partials/_card.html' with title=book.title edition=book.edition author=book.author genre=book.genre location=book.location image=book.image view="home" %}
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for book in result_genre %}
+            <div class=" col-md-4 mb-4">
+                <div class="col-xl-8 mx-auto">
+                {% include 'partials/_card.html' with title=book.title edition=book.edition author=book.author genre=book.genre location=book.location image=book.image view="home" %}
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for book in result_location %}
             <div class=" col-md-4 mb-4">
                 <div class="col-xl-8 mx-auto">
                 {% include 'partials/_card.html' with title=book.title edition=book.edition author=book.author genre=book.genre location=book.location image=book.image view="home" %}

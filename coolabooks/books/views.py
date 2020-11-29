@@ -1,11 +1,12 @@
+import union as union
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.template import loader
 from .models import Book
 from .forms import BookForm
 from django.views.generic.edit import CreateView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import Q
+
 
 
 # view for the homepage
@@ -86,7 +87,28 @@ def edit_book(request, id):
 
     if form.is_valid():
         form.save()
-        messages.success(request,f'{ ind_books.title } was successfully updated.')
+        messages.success(request, f'{ ind_books.title } was successfully updated.')
         return redirect('books:my-books')
     
     return render(request, 'books/book-form.html', {'form':form, 'ind_books': ind_books})
+
+def search(request):
+
+    # Filtering results in the order of which they are needed
+
+    query = request.GET.get('search')
+    result_title = Book.objects.filter(title__unaccent__icontains=query)
+    result_author = Book.objects.filter(author__unaccent__icontains=query).difference(result_title)
+    result_genre = Book.objects.filter(genre__unaccent__icontains=query).difference(result_title.union(result_author))
+    result_location = Book.objects.filter(location__unaccent__icontains=query).difference(result_title.union(result_author, result_genre))
+
+    final_result = result_title | result_author | result_genre | result_location
+
+    context = {
+        'result_title': result_title,
+        'result_author': result_author,
+        'result_genre': result_genre,
+        'result_location': result_location,
+    }
+    # rendering the template
+    return render(request, 'books/search.html', context)
