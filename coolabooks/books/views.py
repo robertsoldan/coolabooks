@@ -89,7 +89,7 @@ def edit_book(request, id):
         messages.success(request, f'{ ind_books.title } was successfully updated.')
         return redirect('books:my-books')
     
-    return render(request, 'books/book-form.html', {'form':form, 'ind_books': ind_books})
+    return render(request, 'books/edit-book.html', {'form':form, 'ind_books': ind_books})
 
 def search(request):
 

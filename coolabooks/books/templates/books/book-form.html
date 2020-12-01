@@ -2,7 +2,12 @@
 {% extends 'books/base.html' %}
 
 {% block body %}
-
+{% if not user.is_authenticated %}
+<div class="mt-5 mx-auto my-auto row" style="height: 70vh">
+    <h3 class="mx-auto my-auto">Please <a href="/login">login</a> to view this page</h3>
+</div>
+{% endif %}
+{% if user.is_authenticated %}
 <div class="container my-5">
     <div class="row">
         <div class="col-md-4 offset-md-4 my-5">
@@ -23,13 +28,13 @@
                                 {{ field }}
                             </div>
                         {% endfor %}
-                        <button type = "submit" class="btn-info">Save</button>
+                        <button type = "submit" class="btn-info btn-sm">Save</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+{% endif %}
 
 {% endblock %}

@@ -1,0 +1,50 @@
+<!-- this imports content from the base file (navigation, footer) -->
+{% extends 'books/base.html' %}
+
+{% block body %}
+{% if not user.is_authenticated %}
+<div class="mt-5 mx-auto my-auto row" style="height: 70vh">
+    <h3 class="mx-auto my-auto">Please <a href="/login">login</a> to view this page</h3>
+</div>
+{% endif %}
+
+{% if user.is_authenticated %}
+
+    {% if ind_books.added_by != user %}
+        <div class="mt-5 mx-auto my-auto row" style="height: 70vh">
+            <h3 class="mx-auto my-auto">You don't have the authorisation to view this page.</h3>
+        </div>
+    {% endif %}
+
+    {% if ind_books.added_by == user %}
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-4 offset-md-4 my-5">
+                    <div class="card">
+                        <div class="card-header text-info bg-light text-center">
+                            <div class = "card-title">
+                                Edit the book info below
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <!-- loops through the form fields and displays them -->
+                            <form method="POST">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                <div class="form-group">
+                                    {{ field.name }}
+                                    <br>
+                                    {{ field }}
+                                </div>
+                                {% endfor %}
+                               <button type = "submit" class="btn-info btn-sm">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+
+{% endblock %}
