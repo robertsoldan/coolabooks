@@ -1,11 +1,10 @@
-import union as union
 from django.shortcuts import render, redirect
 from .models import Book
 from .forms import BookForm
 from django.views.generic.edit import CreateView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import Q
+
 
 
 
