@@ -1,0 +1,14 @@
+{% extends 'books/base.html' %}
+
+{% block body %}
+
+    <h1>Title: {{ book.title }}</h1>
+
+    <p><strong>Edition:</strong> {{ book.edition }}</p>
+    <p><strong>Author:</strong> <a href="https://en.wikipedia.org/wiki/{{ book.author }}">{{ book.author }}</a></p>
+    <p><strong>Location:</strong> {{ book.location }}</p>
+    <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p>
+    <p><strong>Year:</strong> {{ book.year }}</p>
+    <p><strong>Picture:</strong> {{ book.image }}</p>
+
+{% endblock %}

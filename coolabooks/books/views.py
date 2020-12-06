@@ -111,3 +111,11 @@ def search(request):
     }
     # rendering the template
     return render(request, 'books/search.html', context)
+
+def view_details(request, id):
+    try:
+        book = Book.objects.get(id=id)
+    except Book.DoesNotExist:
+        raise Http404('Book does not exist')
+
+    return render(request, 'books/book-details.html', context={'book': book})
