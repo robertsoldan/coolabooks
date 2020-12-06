@@ -9,6 +9,6 @@
     <p><strong>Location:</strong> {{ book.location }}</p>
     <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p>
     <p><strong>Year:</strong> {{ book.year }}</p>
-    <p><strong>Picture:</strong> {{ book.image }}</p>
+    <p><img src="{{ book.image }}" height="400px" width="600px" alt="Book picture"></img></p>
 
 {% endblock %}
