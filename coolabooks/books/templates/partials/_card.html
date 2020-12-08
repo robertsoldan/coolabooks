@@ -24,7 +24,7 @@
 
         {% if view == "reserved" %}
         <div class="row">
-            <a href="#" class="btn btn-danger ml-3">Remove</a>
+            <a href="{% url 'books:cancel_book' book.id %}" class="btn btn-danger ml-3">Remove</a>
         </div>
         {% endif %}
     </div>

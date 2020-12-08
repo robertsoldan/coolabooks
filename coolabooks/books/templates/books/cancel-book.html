@@ -1,0 +1,51 @@
+{% extends 'books/base.html' %}
+
+{% block body %}
+{% if not user.is_authenticated %}
+<div class="mt-5 mx-auto my-auto row" style="height: 70vh">
+    <h3 class="mx-auto my-auto">Please <a href="/login">login</a> to view this page</h3>
+</div>
+{% endif %}
+{% if user.is_authenticated %}
+    
+    {% if book.reserved_by != user %}
+    <div class="mt-5 mx-auto my-auto row" style="height: 70vh">
+        <h3 class="mx-auto my-auto">You don't have the authorisation to view this page.</h3>
+    </div>
+    {% endif %}
+
+    {% if book.reserved_by == user %} 
+            <div class="container my-5">
+                <div class="row">
+                    <div class="col-md-4 offset-md-4 my-5">
+                        <div class="card">
+                            <div class="card-header text-info bg-light text-center">
+                                <div class = "card-title">
+                                    Remove a book
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                <!-- loops through the form fields and displays them -->
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <p> Are you sure you want to remove {{ book.title }}?</p>
+                                    <div class="d-none">  
+                                        <label for="id_reserved">Reserved:</label><input type="checkbox" name="reserved" id="id_reserved" checked="false">
+                                        <label for="id_reserved_by">Reserved by:</label>
+                                        <select name="reserved_by" id="id_reserved_by">
+                                            <option value="1" selected="1">admin</option>
+                                        </select>
+                                    </div>
+                                    <button type = "submit" class="btn btn-info">Confirm</button>
+                                    <a href="/my-books" class="btn btn-danger ml-4">Cancel</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    {% endif %}
+    
+{% endif %}
+
+{% endblock %}

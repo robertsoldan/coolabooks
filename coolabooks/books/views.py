@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Book
-from .forms import BookForm
-from django.views.generic.edit import CreateView
+from .forms import BookForm, ReserveForm
+from django.views.generic.edit import CreateView, UpdateView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
@@ -119,3 +119,34 @@ def view_details(request, id):
         raise Http404('Book does not exist')
 
     return render(request, 'books/book-details.html', context={'book': book})
+
+class ReserveBook(SuccessMessageMixin, UpdateView):
+    model = Book
+    fields = ['reserved', 'reserved_by']
+    template_name = 'books/reserve-book.html'
+
+    def form_valid(self, form):
+        form.instance.reserved_by = self.request.user
+        form.instance.reserved = True
+
+        return super().form_valid(form)
+    
+    success_message = "Your book has been secured! View details under the Reserve tab."
+    success_url = "/my-books/"
+
+class CancelBook(SuccessMessageMixin, UpdateView):
+    model = Book
+    fields = ['reserved', 'reserved_by']
+    template_name = 'books/cancel-book.html'
+
+    def form_valid(self, form):
+        form.instance.reserved = False
+
+        return super().form_valid(form)
+
+    success_message = "You have successfully cancelled your reservation."
+    success_url = "/my-books/"
+    
+    
+
+    

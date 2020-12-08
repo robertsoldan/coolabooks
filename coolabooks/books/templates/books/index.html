@@ -26,11 +26,13 @@
     </div>
     <div class="row  mt-4 content">
         {% for book in ind_books %}
+            {% if not book.reserved %}
             <div class=" col-md-4 mb-4">
                 <div class="col-xl-8 mx-auto">
                 {% include 'partials/_card.html' with title=book.title edition=book.edition author=book.author genre=book.genre location=book.location image=book.image view="home" %}
                 </div>
             </div>
+            {% endif %}
         {% endfor %}
     </div>
 </div>
