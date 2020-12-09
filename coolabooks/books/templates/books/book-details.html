@@ -1,16 +1,44 @@
 {% extends 'books/base.html' %}
+{% load static %}
 
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
 {% block body %}
 
-    <h1>Title: {{ book.title }}</h1>
+<div class="container">
+    <div class="row">
+    	<div class="col-md-12">
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail" >
+					<h4 class="text-center"><span class="label label-info">Details</span></h4>
+					<img src="{{ book.image }}" width="100%" alt="Book picture" class="img-responsive">
+					<div class="caption">
+						<div class="row">
+							<div class="col-md-12">
+								<h2>{{ book.title }}</h2><br>
+							</div>
+						</div>
 
-    <p><strong>Edition:</strong> {{ book.edition }}</p>
-    <p><strong>Author:</strong> <a href="https://en.wikipedia.org/wiki/{{ book.author }}">{{ book.author }}</a></p>
-    <p><strong>Location:</strong> {{ book.location }}</p>
-    <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p>
-    <p><strong>Year:</strong> {{ book.year }}</p>
-    <p><img src="{{ book.image }}" height="400px" width="600px" alt="Book picture"></img></p>
-    <div>
-        <a href="{% url 'books:reserve_book' book.id %}" class="btn btn-dark">Reserve</a>
+                            <h5><strong>Year:</strong> {{ book.year }}</h5>
+						    <h5><strong>Edition:</strong> {{ book.edition }}</h5>
+                            <h5><strong>Author:</strong> <a href="https://en.wikipedia.org/wiki/{{ book.author }}" target="_blank">{{ book.author }}</a></h5>
+                            <h5><strong>Genre:</strong> {{ book.genre }}</h5>
+                            <h5><strong>Location:</strong> {{ book.location }}</h5><br>
+						<div class="row">
+							<div class="col-md-6">
+								<a href="{% url 'books:index' %}" class="btn btn-dark" style="width: 100%">Back</a>
+							</div>
+							<div class="col-md-6">
+								<a href="{% url 'books:reserve_book' book.id %}" class="btn btn-dark" style="width: 100%; background-color: forestgreen">Reserve</a></div>
+						    </div>
+					    </div>
+				    </div>
+            </div>
+        </div>
     </div>
+</div>
+
 {% endblock %}
