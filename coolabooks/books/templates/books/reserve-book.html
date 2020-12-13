@@ -1,13 +1,15 @@
 {% extends 'books/base.html' %}
 
 {% block body %}
+<!-- prompting the user to log in order to reserve the book -->
 {% if not user.is_authenticated %}
 <div class="mt-5 mx-auto my-auto row" style="height: 70vh">
     <h3 class="mx-auto my-auto">Please <a href="/login">login</a> to view this page</h3>
 </div>
 {% endif %}
+
 {% if user.is_authenticated %}
-    
+    <!-- user cannot reserve a book they added -->
     {% if book.added_by == user %}
         <div class="mt-5 mx-auto my-auto row" style="height: 70vh">
             <h3 class="mx-auto my-auto">You can't reserve your own book.</h3>

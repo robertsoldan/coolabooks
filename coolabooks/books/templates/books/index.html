@@ -21,9 +21,19 @@
             <h3 class="text-center text-light mx-auto">Pick up or drop at a location of your choosing</h3>
         </div>
     </div>
+</div>
 
+    <!-- displaying messages when users donate -->
 
-    </div>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="text-center alert alert-{{ message.tags }} mt-0">
+            {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %} 
+
+    <!-- filtering only not reserved books on the homepage -->
     <div class="row  mt-4 content">
         {% for book in ind_books %}
             {% if not book.reserved %}

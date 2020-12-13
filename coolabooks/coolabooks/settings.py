@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # added books and users here
     'books.apps.BooksConfig',
     'users.apps.UsersConfig',
+    'donations.apps.DonationsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

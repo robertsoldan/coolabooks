@@ -21,6 +21,8 @@
 {% if user.is_authenticated %}
 <div style="margin-top: 9vh">
     
+    <!-- displaying messages for users based on their actions -->
+
     {% if messages %}
         {% for message in messages %}
             <div class="text-center alert alert-{{ message.tags }} mt-0">
@@ -44,6 +46,8 @@
             <a class="nav-link text-dark" href="/my-books/reserved">Reserved</a>
         </li>
     </ul>
+    
+    <!-- user cannot see a book that was reserved in their dashboard -->
     <div class="row  mt-4 content">
         {% for book in ind_books %}
         {% if book.added_by == user %}
