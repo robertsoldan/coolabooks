@@ -15,12 +15,19 @@
     </div>
     {% endif %}
 
+    {% if ind_books.reserved %}
+    <div class="mt-5 mx-auto my-auto row" style="height: 70vh">
+        <h3 class="mx-auto my-auto">You can't delete a book that was already reserved.</h3>
+    </div>
+    {% endif %}
+
     {% if ind_books.added_by == user %} 
+        {% if not ind_books.reserved %}
             <div class="container my-5">
                 <div class="row">
                     <div class="col-md-4 offset-md-4 my-5">
                         <div class="card">
-                            <div class="card-header text-info bg-light text-center">
+                            <div class="card-header text-light bg-dark text-center">
                                 <div class = "card-title">
                                     Delete a book
                                 </div>
@@ -30,14 +37,15 @@
                                 <form method="POST">
                                     {% csrf_token %}
                                     <p> Are you sure you want to delete {{ ind_books.title }}?</p>
-                                    <button type = "submit" class="btn btn-info">Confirm</button>
-                                    <a href="/my-books" class="btn btn-danger ml-4">Cancel</a>
+                                    <button type = "submit" class="btn btn-danger">Confirm</button>
+                                    <a href="{% url 'books:my-books' %}" class="btn btn-dark ml-4">Cancel</a>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        {% endif %}        
     {% endif %}
     
 {% endif %}

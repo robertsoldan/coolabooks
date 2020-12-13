@@ -16,12 +16,20 @@
         </div>
     {% endif %}
 
+    {% if ind_books.reserved %}
+    <div class="mt-5 mx-auto my-auto row" style="height: 70vh">
+        <h3 class="mx-auto my-auto">You can't edit a book that was already reserved.</h3>
+    </div>
+    {% endif %}
+
     {% if ind_books.added_by == user %}
+        {% if not ind_books.reserved %}
+
         <div class="container my-5">
             <div class="row">
                 <div class="col-md-4 offset-md-4 my-5">
                     <div class="card">
-                        <div class="card-header text-info bg-light text-center">
+                        <div class="card-header text-light bg-dark text-center">
                             <div class = "card-title">
                                 Edit the book info below
                             </div>
@@ -37,13 +45,15 @@
                                     {{ field }}
                                 </div>
                                 {% endfor %}
-                               <button type = "submit" class="btn-info btn-sm">Save</button>
+                               <button type = "submit" class="btn-dark btn-sm">Save</button>
                             </form>
+                            <a href="{% url 'books:my-books' %}" class="btn btn-danger btn-sm mt-3">Cancel</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% endif %}
     {% endif %}
 {% endif %}
 

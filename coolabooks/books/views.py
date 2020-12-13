@@ -57,14 +57,14 @@ def privacy(request):
 
 class AddBook(SuccessMessageMixin, CreateView):
     model = Book
-    fields = ['title', 'edition', 'author', 'location', 'genre', 'year', 'image']
+    fields = ['title', 'edition', 'author', 'location', 'genre', 'year', 'image', 'contact']
     template_name = 'books/book-form.html'
 
     def form_valid(self, form):
         form.instance.added_by = self.request.user
         return super().form_valid(form)
     
-    success_message = "%(title)s was created successfully"
+    success_message = "%(title)s was added successfully"
 
 # delete a book
 
@@ -131,7 +131,7 @@ class ReserveBook(SuccessMessageMixin, UpdateView):
 
         return super().form_valid(form)
     
-    success_message = "Your book has been secured! View details under the Reserve tab."
+    success_message = "Your book has been secured! View details under the Reserved tab."
     success_url = "/my-books/"
 
 class CancelBook(SuccessMessageMixin, UpdateView):

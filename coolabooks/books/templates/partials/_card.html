@@ -23,6 +23,7 @@
         {% endif %}
 
         {% if view == "reserved" %}
+        <p class="card-text">Contact info: {{book.contact}}</p>
         <div class="row">
             <a href="{% url 'books:cancel_book' book.id %}" class="btn btn-danger ml-3">Remove</a>
         </div>
