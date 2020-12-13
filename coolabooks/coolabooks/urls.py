@@ -19,6 +19,7 @@ from users import views as user_views
 from django.contrib.auth import views as authentication_views
 from django.urls import include, path
 from donations import views as donation_views
+from contact import views as contact_views
 
 
 
@@ -34,4 +35,6 @@ urlpatterns = [
     path('logout/', authentication_views.LogoutView.as_view(template_name = 'users/logout.html'), name='logout'),
     # setting up URL pattern for the donation
     path('donate/', donation_views.donate, name="donate"),
+    # setting up URL pattern for the contact page
+    path('contact/', contact_views.contact, name="contact"),
 ]

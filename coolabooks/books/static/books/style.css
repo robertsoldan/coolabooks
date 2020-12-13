@@ -43,4 +43,12 @@ html, body {
     .content {
         margin-bottom: 15vh;
     }
+
+    footer {
+        position: relative !important;
+    }
+
+    .details {
+        margin-bottom: 2vh;
+    }
 }

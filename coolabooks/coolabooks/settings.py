@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'books.apps.BooksConfig',
     'users.apps.UsersConfig',
     'donations.apps.DonationsConfig',
+    'contact.apps.ContactConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

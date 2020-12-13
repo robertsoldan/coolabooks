@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render, redirect
 from .models import Book
 from .forms import BookForm, ReserveForm
@@ -53,6 +54,9 @@ def disclaimer(request):
 def privacy(request):
     return render(request, 'books/privacy.html')
 
+def about(request):
+    return render(request, 'books/about.html')
+
 # class-based view for adding a book
 
 class AddBook(SuccessMessageMixin, CreateView):
@@ -96,10 +100,10 @@ def search(request):
     # Filtering results in the order of which they are needed
 
     query = request.GET.get('search')
-    result_title = Book.objects.filter(title__unaccent__icontains=query)
-    result_author = Book.objects.filter(author__unaccent__icontains=query).difference(result_title)
-    result_genre = Book.objects.filter(genre__unaccent__icontains=query).difference(result_title.union(result_author))
-    result_location = Book.objects.filter(location__unaccent__icontains=query).difference(result_title.union(result_author, result_genre))
+    result_title = Book.objects.filter(title__unaccent__icontains=query).filter(reserved = False)
+    result_author = Book.objects.filter(author__unaccent__icontains=query).filter(reserved = False).difference(result_title)
+    result_genre = Book.objects.filter(genre__unaccent__icontains=query).filter(reserved = False).difference(result_title.union(result_author))
+    result_location = Book.objects.filter(location__unaccent__icontains=query).filter(reserved = False).difference(result_title.union(result_author, result_genre))
 
     final_result = result_title | result_author | result_genre | result_location
 
