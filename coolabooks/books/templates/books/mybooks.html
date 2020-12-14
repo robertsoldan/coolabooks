@@ -19,18 +19,18 @@
 </div>
 {% endif %}
 {% if user.is_authenticated %}
-<div style="margin-top: 9vh">
+<div style="margin-top: 8vh">
     
     <!-- displaying messages for users based on their actions -->
 
     {% if messages %}
         {% for message in messages %}
-            <div class="text-center alert alert-{{ message.tags }} mt-0">
+            <div class="text-center alert alert-{{ message.tags }} mt-1">
             {{ message }}
             </div>
         {% endfor %}
     {% endif %} 
-    <div class="row ml-5 mt-5">
+    <div class="row ml-5 pt-3 mt-3">
         <h4>{{ user }}'s dashboard</h4>
     </div>
     <div class="row ml-5 mt-2">
