@@ -1,0 +1,51 @@
+{% extends 'books/base.html' %}
+{% load static %}
+{% block body %}
+<div class="home">
+    <div class="header-img row">
+        <div class="column my-auto mx-auto main-header">
+            <h1 class="text-center text-light mx-auto">Who are we?</h1>
+            <h3 class="text-center text-light mx-auto">And what do we do?</h3>
+        </div>
+    </div>
+</div>
+
+<div class="container-sm my-3 mb-5 pb-5">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>CoolaBooks</h2>
+            <p>CoolaBooks is a project started off by Sophia Hennouni, Dejan Mijakovac and Robert Soldan</p>
+            <p>At the time of the pandemic, people are looking for ways to replace their outdoor and social activities. In Ireland, historically renowned for its literary prowess, one of the main ways of keeping busy during this period is reading. While books can be read in digital format, people still love reading books in a physical format. At the same time, research shows that young people started reading more during the pandemic. There is a real thirst for reading out there. But buying a new book is expensive, even more so in these difficult times, so people would benefit from an app that allows them to exchange books.</p>
+            <p>Due to COVID, Meetup groups to exchange books have been cancelled since March. Most of the other services and apps seems to be fairly localized to either cities or regions in other parts of the world, have really poor reviews or seem to be focused on exchange of student coursebooks.</p>
+        </div>
+        <div class="col-sm-6 text-center d-flex align-items-center">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src='{% static "books/images/sophia.jpg" %}' alt="Sophia" class="rounded-circle img-fluid w-75" />
+                    <p>Sophia</p>
+                </div>
+
+                <div class="col-sm-4">
+                    <img src='{% static "books/images/dejan.jpg" %}' alt="Dejan" class="rounded-circle img-fluid w-75"/>
+                    <p>Dejan</p>
+                </div>
+
+                <div class="col-sm-4">
+                    <img src='{% static "books/images/robert.jpg" %}' alt="Robert" class="rounded-circle img-fluid w-75" />
+                    <p>Robert</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <img src='{% static "books/images/1.jpg" %}' alt="person reading a book" class="img-fluid rounded" />
+        </div>
+        <div class="col-sm-6 d-flex-column align-items-center">
+            <p>So we decided to try and be the change we want to see in the world. We are trying to provide a centralized book exchanging service, free of charge.</p>
+            <p>Our aim is to create a web application which allows users to exchange books with other users, give books away, donate funds to support the app and enable communication and engagement with other members of the community who share the same interests.</p>
+            <p>We hope that this will have a positive impact on people’s mental health during the pandemic, prevent unnecessary accumulation of newly-bought books in order to positively impact the environment and free up some space in people’s homes, which is important at a time when people are mostly working from home.  </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,45 +1,43 @@
-<!-- this imports content from the base file (navigation, footer) -->
 {% extends 'books/base.html' %}
 
 {% block body %}
 
-<!-- user cannot delete a book when logged out -->
+<!-- user cannot cancel a reservation unless logged in -->
 {% if not user.is_authenticated %}
 <div class="mt-5 mx-auto my-auto row" style="height: 70vh">
     <h3 class="mx-auto my-auto">Please <a href="/login">login</a> to view this page</h3>
 </div>
 {% endif %}
 {% if user.is_authenticated %}
-
-    {% if ind_books.added_by != user %}
+    <!-- user cannot cancel a reservation they haven't made -->
+    {% if book.reserved_by != user %}
     <div class="mt-5 mx-auto my-auto row" style="height: 70vh">
         <h3 class="mx-auto my-auto">You don't have the authorisation to view this page.</h3>
     </div>
     {% endif %}
 
-
-    {% if ind_books.reserved %}
-    <div class="mt-5 mx-auto my-auto row" style="height: 70vh">
-        <h3 class="mx-auto my-auto">You can't delete a book that was already reserved.</h3>
-    </div>
-    {% endif %}
-
-    {% if ind_books.added_by == user %} 
-        {% if not ind_books.reserved %}
+    {% if book.reserved_by == user %} 
             <div class="container my-5">
                 <div class="row">
                     <div class="col-md-4 offset-md-4 my-5">
                         <div class="card">
                             <div class="card-header text-light bg-dark text-center">
                                 <div class = "card-title">
-                                    Delete a book
+                                    Remove a book
                                 </div>
                             </div>
                             <div class="card-body text-center">
                                 <!-- loops through the form fields and displays them -->
                                 <form method="POST">
                                     {% csrf_token %}
-                                    <p> Are you sure you want to delete {{ ind_books.title }}?</p>
+                                    <p> Are you sure you want to remove {{ book.title }}?</p>
+                                    <div class="d-none">  
+                                        <label for="id_reserved">Reserved:</label><input type="checkbox" name="reserved" id="id_reserved" checked="false">
+                                        <label for="id_reserved_by">Reserved by:</label>
+                                        <select name="reserved_by" id="id_reserved_by">
+                                            <option value="1" selected="1">admin</option>
+                                        </select>
+                                    </div>
                                     <button type = "submit" class="btn btn-danger">Confirm</button>
                                     <a href="{% url 'books:my-books' %}" class="btn btn-dark ml-4">Cancel</a>
                                 </form>
@@ -48,7 +46,6 @@
                     </div>
                 </div>
             </div>
-        {% endif %}        
     {% endif %}
     
 {% endif %}

@@ -1,0 +1,54 @@
+{% extends 'books/base.html' %}
+
+{% block body %}
+
+{% if not user.is_authenticated %}
+<div class="mt-5 mx-auto my-auto row" style="height: 70vh">
+    <h3 class="mx-auto my-auto">Please <a href="/login">login</a> to view this page</h3>
+</div>
+{% endif %}
+
+{% if user.is_authenticated %}
+
+<div class="container py-5 my-5">
+    <div class="row mb-3">
+        <a class="btn btn-dark mr-3" href="/my-books">< Return</a>
+    <h2>{{user.first_name}}</h2>
+    </div>
+        <h4>Edit user details</h4>
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label for="fname">First name</label>
+                    <input type="text" class="form-control" value={{user.first_name}} name="fname" id="fname" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label for="lname">Last name</label>
+                    <input type="text" class="form-control" value={{user.last_name}} name="lname" id="lname" required>
+                </div>
+            </div>
+                <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" value={{user.email}} name="email" id="email" required>
+                </div>
+            </div>
+            <div class="text-left row">
+                <button type="submit" class="btn btn-dark btn-lg my-2"> Save</button>
+            </div>
+        </form>
+    </div>
+    {% if not user.is_superuser %}
+        <h4>Delete your account</h4>
+        <h6 class="text-danger">Deleting your account is permanent, so take a moment before accepting the deletion!</h6>
+        <a class="btn btn-danger mt-3" href="/delete-user">Delete account</a>
+    {% endif %}
+</div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,8 +1,8 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
 from .models import Book
-from .forms import BookForm
-from django.views.generic.edit import CreateView
+from .forms import BookForm, ReserveForm
+from django.views.generic.edit import CreateView, UpdateView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
@@ -54,18 +54,21 @@ def disclaimer(request):
 def privacy(request):
     return render(request, 'books/privacy.html')
 
+def about(request):
+    return render(request, 'books/about.html')
+
 # class-based view for adding a book
 
 class AddBook(SuccessMessageMixin, CreateView):
     model = Book
-    fields = ['title', 'edition', 'author', 'location', 'genre', 'year', 'image']
+    fields = ['title', 'edition', 'author', 'location', 'genre', 'year', 'image', 'contact']
     template_name = 'books/book-form.html'
 
     def form_valid(self, form):
         form.instance.added_by = self.request.user
         return super().form_valid(form)
     
-    success_message = "%(title)s was created successfully"
+    success_message = "%(title)s was added successfully"
 
 # delete a book
 
@@ -97,10 +100,10 @@ def search(request):
     # Filtering results in the order of which they are needed
 
     query = request.GET.get('search')
-    result_title = Book.objects.filter(title__unaccent__icontains=query)
-    result_author = Book.objects.filter(author__unaccent__icontains=query).difference(result_title)
-    result_genre = Book.objects.filter(genre__unaccent__icontains=query).difference(result_title.union(result_author))
-    result_location = Book.objects.filter(location__unaccent__icontains=query).difference(result_title.union(result_author, result_genre))
+    result_title = Book.objects.filter(title__unaccent__icontains=query).filter(reserved = False)
+    result_author = Book.objects.filter(author__unaccent__icontains=query).filter(reserved = False).difference(result_title)
+    result_genre = Book.objects.filter(genre__unaccent__icontains=query).filter(reserved = False).difference(result_title.union(result_author))
+    result_location = Book.objects.filter(location__unaccent__icontains=query).filter(reserved = False).difference(result_title.union(result_author, result_genre))
 
     final_result = result_title | result_author | result_genre | result_location
 
@@ -120,3 +123,34 @@ def view_details(request, id):
         raise Http404('Book does not exist')
 
     return render(request, 'books/book-details.html', context={'book': book})
+
+class ReserveBook(SuccessMessageMixin, UpdateView):
+    model = Book
+    fields = ['reserved', 'reserved_by']
+    template_name = 'books/reserve-book.html'
+
+    def form_valid(self, form):
+        form.instance.reserved_by = self.request.user
+        form.instance.reserved = True
+
+        return super().form_valid(form)
+    
+    success_message = "Your book has been secured! View details under the Reserved tab."
+    success_url = "/my-books/"
+
+class CancelBook(SuccessMessageMixin, UpdateView):
+    model = Book
+    fields = ['reserved', 'reserved_by']
+    template_name = 'books/cancel-book.html'
+
+    def form_valid(self, form):
+        form.instance.reserved = False
+
+        return super().form_valid(form)
+
+    success_message = "You have successfully cancelled your reservation."
+    success_url = "/my-books/"
+    
+    
+
+    
