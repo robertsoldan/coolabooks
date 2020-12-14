@@ -1,1 +1,1 @@
-web: gunicorn coolabooks.wsgi
+web: gunicorn coolabooks.wsgi --log-file -
