@@ -34,6 +34,7 @@ def profile(request):
         user.last_name = request.POST.get("lname", "")
         user.email = request.POST.get("email", "")
         user.save()
+        messages.success(request,f'{user.username}, your account info has been successfully updated.')
         return redirect('books:index')
 
     return render(request, 'users/profile.html')

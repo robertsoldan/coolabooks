@@ -30,7 +30,7 @@
                                 <!-- loops through the form fields and displays them -->
                                 <form method="POST">
                                     {% csrf_token %}
-                                    <p> Are you sure you want to remove {{ book.title }}?</p>
+                                    <p> Are you sure you want to cancel the reservation for {{ book.title }}?</p>
                                     <div class="d-none">  
                                         <label for="id_reserved">Reserved:</label><input type="checkbox" name="reserved" id="id_reserved" checked="false">
                                         <label for="id_reserved_by">Reserved by:</label>
