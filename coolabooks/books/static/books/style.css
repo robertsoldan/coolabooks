@@ -1,5 +1,12 @@
 html, body {
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+body {
+    min-height: 100vh;
 }
 
 .card-img-top {
@@ -45,7 +52,9 @@ html, body {
     }
 
     footer {
-        position: relative !important;
+        position: relative;
+        bottom: 0;
+
     }
 
     .details {
